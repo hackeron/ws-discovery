@@ -37,6 +37,8 @@ class WSDiscovery::Searcher < WSDiscovery::MulticastConnection
     ip, port = peer_info
     logger.info "<#{self.class}> Response from #{ip}:#{port}:\n#{response}\n"
     parsed_response = parse(response)
+    parsed_response.to_hash[:ip] = ip
+    parsed_response.to_hash[:port] = port
     @discovery_responses << parsed_response
   end
 
