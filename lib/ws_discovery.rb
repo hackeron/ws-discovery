@@ -54,8 +54,20 @@ module WSDiscovery
 
   # Traps INT, TERM, and HUP signals and stops the reactor.
   def self.trap_signals
-    trap('INT') { EM.stop }
-    trap('TERM') { EM.stop }
+    trap('INT') do
+      EM.stop
+    rescue RuntimeError => e
+      # Already stopped
+      raise unless e.message.include?('eventmachine not initialized')
+    end
+
+    trap('TERM') do
+      EM.stop
+    rescue RuntimeError => e
+      # Already stopped
+      raise unless e.message.include?('eventmachine not initialized')
+    end
+
     trap('HUP') { EM.stop } if RUBY_PLATFORM !~ /mswin|mingw/
   end
 end
