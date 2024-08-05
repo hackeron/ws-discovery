@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency("nokogiri")
   s.add_dependency("nori", '>=2.0.0')
   s.add_dependency("uuid")
+  s.add_dependency("activesupport", '>= 4.0')
 
   s.add_development_dependency("bundler", ">= 1.0.21")
   s.add_development_dependency("rake", ">= 0")
