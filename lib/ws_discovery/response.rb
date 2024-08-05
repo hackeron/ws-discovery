@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'nori'
+require 'active_support/core_ext/string/inflections'
 require_relative 'error'
 
 module WSDiscovery
